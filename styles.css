@@ -1400,7 +1400,7 @@ footer p {
   }
 
   .slide {
-    height: 30px; /* Reduced height for mobile */
+    height: 300px; /* Reduced height for mobile */
   }
 
   .slide img {
