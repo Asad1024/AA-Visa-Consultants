@@ -124,6 +124,7 @@ body {
 
 header {
   background: #f4f4f4;
+  padding: 10px 0;
   position: relative;
 }
 
@@ -1391,11 +1392,6 @@ footer p {
     padding: 0 15px;
   }
 
-  /* Carousel mobile fixes */
-  .banner-carousel {
-    margin-top: 10px;
-  }
-
   .slide {
     height: 130px; /* Reduced height for mobile */
   }
@@ -1415,11 +1411,7 @@ footer p {
 
   /* Logo and navigation adjustments */
   header .logo img {
-    height: 40px; /* Smaller logo for mobile */
-  }
-
-  header nav {
-    padding: 10px;
+    height: 50px; /* Smaller logo for mobile */
   }
 
   /* Navigation menu adjustments */
