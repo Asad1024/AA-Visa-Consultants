@@ -123,7 +123,7 @@ body {
 }
 
 header {
-  background: #f4f4f4;
+  background: #fff;
   padding: 10px 0;
   position: relative;
 }
@@ -138,7 +138,7 @@ header nav {
 }
 
 header .logo img {
-  height: 70px;
+  height: 60px;
 }
 
 /* Hide checkbox */
@@ -1392,6 +1392,11 @@ footer p {
     padding: 0 15px;
   }
 
+  /* Carousel mobile fixes */
+  .banner-carousel {
+    margin-top: 10px;
+  }
+
   .slide {
     height: 130px; /* Reduced height for mobile */
   }
@@ -1411,7 +1416,11 @@ footer p {
 
   /* Logo and navigation adjustments */
   header .logo img {
-    height: 50px; /* Smaller logo for mobile */
+    height: 40px; /* Smaller logo for mobile */
+  }
+
+  header nav {
+    padding: 10px;
   }
 
   /* Navigation menu adjustments */
@@ -1449,7 +1458,7 @@ footer p {
   }
 
   .slide {
-    height: 130px;
+    height: 200px;
   }
 
   header .logo img {
