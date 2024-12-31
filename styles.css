@@ -270,6 +270,7 @@ header .logo img {
   position: relative;
 }
 
+
 /* Carousel Slides */
 .carousel {
   display: flex;
@@ -292,12 +293,11 @@ header .logo img {
   justify-content: center;
   align-items: center;
 }
-
 .slide img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background-color: #000;
+  object-fit: cover; /* Covers the slide without leaving space */
+  background-color: #000; /* Fallback color */
 }
 
 input[type="radio"] {
@@ -1376,7 +1376,7 @@ footer p {
   .booking-btn,
   .view-btn {
     width: auto; /* Changed from 100% to auto */
-    min-width: 140px; /* Set minimum width */
+    min-width: 100px; /* Set minimum width */
     max-width: none; /* Remove max-width constraint */
     padding: 8px 15px;
     font-size: 13px; /* Slightly reduced font size */
@@ -1400,13 +1400,11 @@ footer p {
   }
 
   .slide {
-    height: 127px; /* Reduced height for mobile */
+    height: 30px; /* Reduced height for mobile */
   }
 
   .slide img {
-    object-fit: contain; /* Ensures image covers the area without distortion */
-    width: 100%;
-    height: 100%;
+    object-fit: cover; /* Ensures image covers the area without distortion */
   }
 
   .carousel-navigation {
@@ -1462,7 +1460,7 @@ footer p {
   }
 
   .slide {
-    height: 180px;
+    height: 200px;
   }
 
   header .logo img {
