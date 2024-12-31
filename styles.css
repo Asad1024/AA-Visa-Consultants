@@ -123,8 +123,7 @@ body {
 }
 
 header {
-  background: #fff;
-  padding: 10px 0;
+  background: #f4f4f4;
   position: relative;
 }
 
@@ -138,7 +137,7 @@ header nav {
 }
 
 header .logo img {
-  height: 60px;
+  height: 70px;
 }
 
 /* Hide checkbox */
@@ -1458,7 +1457,7 @@ footer p {
   }
 
   .slide {
-    height: 200px;
+    height: 130px;
   }
 
   header .logo img {
