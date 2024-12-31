@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script>
+      let currentSlide = 1;
+      const totalSlides = 3;
+
+      setInterval(() => {
+        document.getElementById(`carousel-${currentSlide}`).checked = true;
+        currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      }, 3000); // Changes slide every 5 seconds
+
+      // Add this to your existing script section
+      const countryPdfs = {
+        // Asian Countries
+        china: "/Pdf/China.pdf",
+        japan: "/Pdf/Japan.pdf",
+        azerbaijan: "/Pdf/Azerbaijan.pdf",
+        "sri-lanka": "/Pdf/SriLanka.pdf",
+        cambodia: "/Pdf/Cambodia.pdf",
+        nepal: "/Pdf/Nepal.pdf",
+        malaysia: "/Pdf/Malaysia.pdf",
+        kyrgyzstan: "/Pdf/Kyrgyzstan.pdf",
+        singapore: "/Pdf/Singapore.pdf",
+        indonesia: "/Pdf/Indonesia.pdf",
+        tajikistan: "/Pdf/Tajikistan.pdf",
+
+        // Middle Eastern Countries
+        "saudi-arabia": "/Pdf/SaudiArabia.pdf",
+        uae: "/Pdf/UAE.pdf",
+        bahrain: "/Pdf/Bahrain.pdf",
+        qatar: "/Pdf/Qatar.pdf",
+        iran: "/Pdf/Iran.pdf",
+        turkey: "/Pdf/Turkey.pdf",
+
+        // African Countries
+        kenya: "/Pdf/Kenya.pdf",
+        uganda: "/Pdf/EastAfrica.pdf",
+        rwanda: "/Pdf/EastAfrica.pdf",
+        ethiopia: "/Pdf/Ethiopia.pdf",
+        "south-africa": "/Pdf/SouthAfrica.pdf",
+        morocco: "/Pdf/Morocco.pdf",
+
+        // European Countries
+        "united-kingdom": "/Pdf/UK.pdf",
+        albania: "/Pdf/Albania.pdf",
+        georgia: "/Pdf/Georgia.pdf",
+
+        // Other Countries
+        usa: "/Pdf/USA.pdf",
+        canada: "/Pdf/Canada.pdf",
+        australia: "/Pdf/Australia.pdf",
+        "new-zealand": "/Pdf/NewZealand.pdf",
+        "south-korea": "/Pdf/SouthKorea.pdf",
+        "hong-kong": "/Pdf/HongKong.pdf",
+        brunei: "/Pdf/Brunei.pdf",
+      };
+
+      function openCountryPdf(country) {
+        const pdfPath = countryPdfs[country];
+        if (pdfPath) {
+          // Check if running on a mobile device
+          const isMobile = /iPhone|iPad|iPod|Android/i.test(
+            navigator.userAgent
+          );
+
+          if (isMobile) {
+            // For mobile devices, open PDF in a new tab
+            window.open(pdfPath, "_blank");
+          } else {
+            // For desktop, use the popup
+            document.getElementById("pdf-iframe").src = pdfPath;
+            openPdfPopup();
+          }
+        }
+      }
+
+      function openPdfPopup() {
+        // Create and add overlay
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        document.body.appendChild(overlay);
+
+        // Prevent body scrolling when popup is open
+        document.body.style.overflow = "hidden";
+
+        // Show popup and overlay
+        document.getElementById("pdf-popup").style.display = "block";
+        overlay.style.display = "block";
+      }
+
+      function closePdfPopup() {
+        // Hide popup
+        document.getElementById("pdf-popup").style.display = "none";
+
+        // Remove overlay
+        const overlay = document.querySelector(".overlay");
+        if (overlay) {
+          overlay.remove();
+        }
+
+        // Restore body scrolling
+        document.body.style.overflow = "";
+
+        // Clear iframe src
+        document.getElementById("pdf-iframe").src = "";
+      }
+
+      // Close popup when clicking outside
+      document.addEventListener("click", function (event) {
+        const popup = document.getElementById("pdf-popup");
+        const overlay = document.querySelector(".overlay");
+        if (event.target === overlay) {
+          closePdfPopup();
+        }
+      });
+
+      // Prevent popup from closing when clicking inside it
+      document
+        .getElementById("pdf-popup")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll(".nav-links li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-content">
+        <p>Online Consultancy</p>
+        <a
+          href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+          target="_blank"
+          rel="noreferrer"
+          class="booking-btn"
+        >
+          Book Now
+        </a>
+        <button
+          onclick="openPdfPopup()"
+          class="view-btn"
+          style="display: flex; align-items: center; gap: 7px"
+        >
+          <i class="fas fa-eye" style="font-size: 12px"></i> View Service &
+          Charges
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating PDF Viewer -->
+    <div id="pdf-popup" class="pdf-popup">
+      <div class="popup-header">
+        <span>View Service & Charges</span>
+        <button onclick="closePdfPopup()" class="close-btn">&times;</button>
+      </div>
+      <iframe id="pdf-iframe" src="/Pdf/main.pdf"></iframe>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span
+          >🌍 Special Discount on Visit Visa Services - Limited Time
+          Offer!</span
+        >
+        <span
+          >✈️ Exclusive Travel Packages Available - Book Your Journey
+          Today!</span
+        >
+        <span>💼 Professional Job Seeker Visa Support - Get Started Now!</span>
+      </div>
+    </div>
+
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="index.html">
+            <img src="./assets/logo.png" alt="Visa Consultant Logo" />
+          </a>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <!-- Menu Header: Contains Logo and Close Icon -->
+          <div class="menu-header">
+            <img src="./assets/logo.jpg" alt="Menu Logo" />
+            <span
+              class="close-icon"
+              onclick="document.getElementById('nav-toggle').checked = false;"
+              >&times;</span
+            >
+          </div>
+          <!-- Navigation Links -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="services.html">Services</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="about">
+      <div class="about-content">
+        <h1>About Us</h1>
+        <p>
+          <strong>AA Visa Consultant</strong> is a leading provider of
+          immigration and visa services, helping clients worldwide achieve their
+          dreams of working or settling abroad. With years of experience and a
+          dedicated team of experts, we offer personalized advice and support
+          throughout the entire visa application process.
+        </p>
+
+        <p>
+          Our mission at <strong>AA Visa Consultant</strong> is to simplify the
+          immigration process for our clients, making it as seamless and
+          stress-free as possible. Whether you're looking to move for work,
+          study, or permanent residency, we have the knowledge and expertise to
+          guide you through every step of the way.
+        </p>
+
+        <div class="about-image">
+          <img src="./assets/meeting.jpg" alt="Consultation Meeting" />
+        </div>
+
+        <p>
+          We work closely with a global network of immigration specialists to
+          ensure that our clients receive accurate and up-to-date information.
+          The team at <strong>AA Visa Consultant</strong> stays informed on the
+          latest immigration laws and policies to provide the best possible
+          service.
+        </p>
+
+        <div class="about-image">
+          <img src="./assets/team.jpg" alt="Team Collaboration" />
+        </div>
+
+        <p>
+          At <strong>AA Visa Consultant</strong>, we believe in building strong
+          relationships with our clients. We take pride in our personalized
+          approach, offering tailored solutions that match the unique needs of
+          each individual or family. Our success is measured by the success of
+          our clients in achieving their immigration goals.
+        </p>
+
+        <div class="about-image">
+          <img
+            src="./assets//visa-assistance.png"
+            alt="Global Visa Assistance"
+          />
+        </div>
+
+        <p>
+          With thousands of successful applications and happy clients,
+          <strong>AA Visa Consultant</strong> is proud to be a trusted partner
+          in the visa and immigration industry. We look forward to helping you
+          achieve your dreams and secure a brighter future abroad.
+        </p>
+      </div>
+    </section>
+
+    <section class="owner-section">
+      <h2>Meet Our Founders</h2>
+      <div class="owner-container">
+        <!-- Owner 1 -->
+        <div class="owner-box">
+          <div class="owner-image-container">
+            <img src="./assets/owner-1.png" alt="Raja Ali Raza - CEO" />
+          </div>
+          <div class="owner-info">
+            <h3>Raja Ali Raza</h3>
+            <span class="title">Founder & Chief Executive Officer (CEO)</span>
+            <p class="description">
+              Raja Ali Raza, the visionary CEO of AA Visa Consultant, has over a
+              decade of experience in business leadership. He has expanded the
+              company's global reach with a client-first approach, ensuring
+              unmatched visa consultancy services that make global travel
+              hassle-free for clients worldwide.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-icon">in</a>
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">t</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Owner 2 -->
+        <div class="owner-box">
+          <div class="owner-image-container">
+            <img src="./assets/owner-2.png" alt="Raja Ashir Ali - Director" />
+          </div>
+          <div class="owner-info">
+            <h3>Raja Ashir Ali</h3>
+            <span class="title">Director & Operations Manager</span>
+            <p class="description">
+              Raja Ashir Ali, the Director of AA Visa Consultant, oversees daily
+              operations, ensuring smooth functioning across departments. His
+              leadership in operational efficiency and close collaboration with
+              the legal and consulting teams ensures personalized, seamless visa
+              services for every client.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-icon">in</a>
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">t</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 AA Visa Consultant. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

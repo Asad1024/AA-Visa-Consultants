@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles.css" />
+    <title>Economy Umrah Packages - AA Visa Consultant</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Sora", sans-serif;
+      }
+
+      .service-detail {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      .hero-section {
+        position: relative;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 20px;
+        margin-bottom: 40px;
+      }
+
+      .hero-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-title {
+        color: white;
+        font-size: 3rem;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .content-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .description {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .feature-card {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-title {
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .feature-description {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .cta-section {
+        text-align: center;
+        margin-top: 50px;
+        padding: 40px;
+        background: #f8f9fa;
+        border-radius: 20px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background: #ffca28;
+        color: black;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .content-section {
+          padding: 20px;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Same header and nav -->
+    <div class="top-bar">
+      <div class="top-content">
+        <p>Online Consultancy</p>
+        <a
+          href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+          target="_blank"
+          rel="noreferrer"
+          class="booking-btn"
+        >
+          Book Now
+        </a>
+        <button
+          onclick="openPdfPopup()"
+          class="view-btn"
+          style="display: flex; align-items: center; gap: 7px"
+        >
+          <i class="fas fa-eye" style="font-size: 12px"></i> View Service &
+          Charges
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating PDF Viewer -->
+    <div id="pdf-popup" class="pdf-popup">
+      <div class="popup-header">
+        <span>View Service & Charges</span>
+        <button onclick="closePdfPopup()" class="close-btn">&times;</button>
+      </div>
+      <iframe id="pdf-iframe" src="../Pdf/main.pdf"></iframe>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span
+          >🌍 Special Discount on Visit Visa Services - Limited Time
+          Offer!</span
+        >
+        <span
+          >✈️ Exclusive Travel Packages Available - Book Your Journey
+          Today!</span
+        >
+        <span>💼 Professional Job Seeker Visa Support - Get Started Now!</span>
+      </div>
+    </div>
+
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="../index.html">
+            <img src="../assets/logo.png" alt="Visa Consultant Logo" />
+          </a>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <!-- Menu Header: Contains Logo and Close Icon -->
+          <div class="menu-header">
+            <img src="../assets/logo.jpg" alt="Menu Logo" />
+            <span
+              class="close-icon"
+              onclick="document.getElementById('nav-toggle').checked = false;"
+              >&times;</span
+            >
+          </div>
+          <!-- Navigation Links -->
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../services.html">Services</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="service-detail">
+      <div class="hero-section">
+        <img
+          src="../services/Green Modern Special Ramadan Umrah Promo Instagram Post.png"
+          alt="Umrah Services"
+        />
+        <div class="hero-overlay">
+          <h1 class="hero-title">Economy Umrah Packages</h1>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <p class="description">
+          Complete Umrah visa processing and travel arrangements with spiritual
+          guidance and support throughout your journey.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Visa Processing</h3>
+            <p>Complete Umrah visa handling</p>
+          </div>
+          <div class="feature-card">
+            <h3>Accommodation</h3>
+            <p>Premium stays in Makkah and Madinah</p>
+          </div>
+          <div class="feature-card">
+            <h3>Transportation</h3>
+            <p>All ground transport arrangements</p>
+          </div>
+          <div class="feature-card">
+            <h3>Spiritual Guidance</h3>
+            <p>Expert religious guidance for rituals</p>
+          </div>
+          <div class="feature-card">
+            <h3>Group Packages</h3>
+            <p>Special rates for groups and families</p>
+          </div>
+          <div class="feature-card">
+            <h3>Support Services</h3>
+            <p>24/7 assistance during your stay</p>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <h2>Ready for Your Spiritual Journey?</h2>
+          <p>Contact us to plan your Umrah</p>
+          <a href="https://wa.me/+923291800786" class="cta-button"
+            >Book Package</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

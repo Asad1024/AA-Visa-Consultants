@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Australia Visa Services</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script>
+      let currentSlide = 1;
+      const totalSlides = 3;
+
+      setInterval(() => {
+        document.getElementById(`carousel-${currentSlide}`).checked = true;
+        currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      }, 3000); // Changes slide every 5 seconds
+
+      // Add this to your existing script section
+      const countryPdfs = {
+        // Asian Countries
+        china: "/Pdf/China.pdf",
+        japan: "/Pdf/Japan.pdf",
+        azerbaijan: "/Pdf/Azerbaijan.pdf",
+        "sri-lanka": "/Pdf/SriLanka.pdf",
+        cambodia: "/Pdf/Cambodia.pdf",
+        nepal: "/Pdf/Nepal.pdf",
+        malaysia: "/Pdf/Malaysia.pdf",
+        kyrgyzstan: "/Pdf/Kyrgyzstan.pdf",
+        singapore: "/Pdf/Singapore.pdf",
+        indonesia: "/Pdf/Indonesia.pdf",
+        tajikistan: "/Pdf/Tajikistan.pdf",
+
+        // Middle Eastern Countries
+        "saudi-arabia": "/Pdf/SaudiArabia.pdf",
+        uae: "/Pdf/UAE.pdf",
+        bahrain: "/Pdf/Bahrain.pdf",
+        qatar: "/Pdf/Qatar.pdf",
+        iran: "/Pdf/Iran.pdf",
+        turkey: "/Pdf/Turkey.pdf",
+
+        // African Countries
+        kenya: "/Pdf/Kenya.pdf",
+        uganda: "/Pdf/EastAfrica.pdf",
+        rwanda: "/Pdf/EastAfrica.pdf",
+        ethiopia: "/Pdf/Ethiopia.pdf",
+        "south-africa": "/Pdf/SouthAfrica.pdf",
+        morocco: "/Pdf/Morocco.pdf",
+
+        // European Countries
+        "united-kingdom": "/Pdf/UK.pdf",
+        albania: "/Pdf/Albania.pdf",
+        georgia: "/Pdf/Georgia.pdf",
+
+        // Other Countries
+        usa: "/Pdf/USA.pdf",
+        canada: "/Pdf/Canada.pdf",
+        australia: "/Pdf/Australia.pdf",
+        "new-zealand": "/Pdf/NewZealand.pdf",
+        "south-korea": "/Pdf/SouthKorea.pdf",
+        "hong-kong": "/Pdf/HongKong.pdf",
+        brunei: "/Pdf/Brunei.pdf",
+      };
+
+      function openCountryPdf(country) {
+        const pdfPath = countryPdfs[country];
+        if (pdfPath) {
+          // Check if running on a mobile device
+          const isMobile = /iPhone|iPad|iPod|Android/i.test(
+            navigator.userAgent
+          );
+
+          if (isMobile) {
+            // For mobile devices, open PDF in a new tab
+            window.open(pdfPath, "_blank");
+          } else {
+            // For desktop, use the popup
+            document.getElementById("pdf-iframe").src = pdfPath;
+            openPdfPopup();
+          }
+        }
+      }
+
+      function openPdfPopup() {
+        // Create and add overlay
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        document.body.appendChild(overlay);
+
+        // Prevent body scrolling when popup is open
+        document.body.style.overflow = "hidden";
+
+        // Show popup and overlay
+        document.getElementById("pdf-popup").style.display = "block";
+        overlay.style.display = "block";
+      }
+
+      function closePdfPopup() {
+        // Hide popup
+        document.getElementById("pdf-popup").style.display = "none";
+
+        // Remove overlay
+        const overlay = document.querySelector(".overlay");
+        if (overlay) {
+          overlay.remove();
+        }
+
+        // Restore body scrolling
+        document.body.style.overflow = "";
+
+        // Clear iframe src
+        document.getElementById("pdf-iframe").src = "";
+      }
+
+      // Close popup when clicking outside
+      document.addEventListener("click", function (event) {
+        const popup = document.getElementById("pdf-popup");
+        const overlay = document.querySelector(".overlay");
+        if (event.target === overlay) {
+          closePdfPopup();
+        }
+      });
+
+      // Prevent popup from closing when clicking inside it
+      document
+        .getElementById("pdf-popup")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll(".nav-links li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-content">
+        <p>Online Consultancy</p>
+        <a
+          href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+          target="_blank"
+          rel="noreferrer"
+          class="booking-btn"
+        >
+          Book Now
+        </a>
+        <button
+          onclick="openPdfPopup()"
+          class="view-btn"
+          style="display: flex; align-items: center; gap: 7px"
+        >
+          <i class="fas fa-eye" style="font-size: 12px"></i> View Service &
+          Charges
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating PDF Viewer -->
+    <div id="pdf-popup" class="pdf-popup">
+      <div class="popup-header">
+        <span>View Service & Charges</span>
+        <button onclick="closePdfPopup()" class="close-btn">&times;</button>
+      </div>
+      <iframe id="pdf-iframe" src="../Pdf/main.pdf"></iframe>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span
+          >🌍 Special Discount on Visit Visa Services - Limited Time
+          Offer!</span
+        >
+        <span
+          >✈️ Exclusive Travel Packages Available - Book Your Journey
+          Today!</span
+        >
+        <span>💼 Professional Job Seeker Visa Support - Get Started Now!</span>
+      </div>
+    </div>
+
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="../index.html">
+            <img src="../assets/logo.png" alt="Visa Consultant Logo" />
+          </a>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <!-- Menu Header: Contains Logo and Close Icon -->
+          <div class="menu-header">
+            <img src="../assets/logo.jpg" alt="Menu Logo" />
+            <span
+              class="close-icon"
+              onclick="document.getElementById('nav-toggle').checked = false;"
+              >&times;</span
+            >
+          </div>
+          <!-- Navigation Links -->
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../services.html">Services</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="country-banner">
+      <h1 style="margin-bottom: 15px">Australia E Visit Visa Sercies</h1>
+      <img src="../countries/aus-banner.jpg" alt="Australia Banner" />
+      <p>
+        Our visa experts provide full support for securing an Australian visa,
+        whether you're planning to work, study, or travel.
+      </p>
+    </section>
+
+    <!-- Visa Fee and Charges Section -->
+    <section class="visa-fee">
+      <h2>Visa Fee & Other Charges</h2>
+      <ul>
+        <li>
+          <strong>Visa Fee:</strong> PKR 42,000/-
+          <span
+            >(NON-Refundable, Payable at the time of Visa Application
+            Posting)</span
+          >
+        </li>
+        <li>
+          <strong>Payment Method:</strong> The candidate can pay the fee through
+          Debit or Credit Card
+        </li>
+        <li>
+          <strong>No Appointment Needed:</strong> No need of any appointment for
+          VFS Global Gerrys Office
+        </li>
+        <li>
+          <strong>Biometric Fee:</strong> PKR 5,000/- payable by the candidate
+        </li>
+      </ul>
+      <h3>Terms & Conditions Applied</h3>
+      <ul>
+        <li>It is not on a done base</li>
+        <li>We just provide visa application assistance</li>
+        <li>
+          Embassy & Immigration has the right to approve or refuse the visa
+          application request
+        </li>
+        <li>
+          If the visa application is refused, all charges are
+          <strong>NON-Refundable</strong>
+        </li>
+        <li>
+          It is all an online process. You just have to attend a biometric
+          session only
+        </li>
+      </ul>
+      <h3>Processing Time</h3>
+      <ul>
+        <li><strong>Normal:</strong> Up to 15 Days</li>
+        <li><strong>Maximum:</strong> Depends on Immigration</li>
+      </ul>
+    </section>
+
+    <!-- Document Requirements Section -->
+    <section class="visa-documents">
+      <h2>Documents Requirement for Australia Visa</h2>
+
+      <div class="document-section">
+        <h3>Personal Documents</h3>
+        <ul>
+          <li><strong>New + Old Passports</strong></li>
+          <li>White Background Picture</li>
+          <li>CNIC Copy</li>
+          <li>Travel History</li>
+          <li>Educational Details</li>
+          <li>Family Registration Certificate</li>
+          <li>Contact Number & Email ID</li>
+          <li>Accounts Maintenance Letter</li>
+          <li>Last 6 Months Bank Statement</li>
+        </ul>
+      </div>
+
+      <div class="document-section">
+        <h3>If Married or Have Children</h3>
+        <ul>
+          <li>Marriage Registration Certificate (MRC)</li>
+          <li>Children's B-Form</li>
+          <li>Children's Birth Certificate</li>
+          <li>Family Registration Certificate by Marriage (FRC)</li>
+        </ul>
+      </div>
+
+      <div class="document-section">
+        <h3>If Travelling With Parents & Siblings</h3>
+        <ul>
+          <li>Family Registration Certificate by Birth (FRC)</li>
+        </ul>
+      </div>
+
+      <div class="document-section">
+        <h3>If Doing Business</h3>
+        <ul>
+          <li>Business NTN Certificate</li>
+          <li>Business Tax Returns</li>
+          <li>Business Proof</li>
+          <li>Visiting Card</li>
+          <li>Business Letter Head</li>
+        </ul>
+      </div>
+
+      <div class="document-section">
+        <h3>If Doing Job</h3>
+        <ul>
+          <li>Personal NTN Certificate</li>
+          <li>Personal Tax Returns</li>
+          <li>Employment Letter</li>
+          <li>Company NOC Letter</li>
+          <li>Last 3 Months Salary Slips</li>
+        </ul>
+      </div>
+
+      <div class="document-section">
+        <h3>Optional Documents</h3>
+        <ul>
+          <li>Corona Vaccine Certificate & Polio Vaccine Certificate</li>
+          <li>Police Character Certificate</li>
+          <li>Property Documents & Affidavit of Support</li>
+          <li>Driving License & Vehicle Registration</li>
+          <li>Recommendation Letter</li>
+          <li>Letter of Invitation</li>
+          <li>Any Other Documents</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Visa Consultant. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

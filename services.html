@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Our Services - AA Visa Consultant</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script>
+      let currentSlide = 1;
+      const totalSlides = 3;
+
+      setInterval(() => {
+        document.getElementById(`carousel-${currentSlide}`).checked = true;
+        currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      }, 3000); // Changes slide every 5 seconds
+
+      // Add this to your existing script section
+      const countryPdfs = {
+        // Asian Countries
+        china: "/Pdf/China.pdf",
+        japan: "/Pdf/Japan.pdf",
+        azerbaijan: "/Pdf/Azerbaijan.pdf",
+        "sri-lanka": "/Pdf/SriLanka.pdf",
+        cambodia: "/Pdf/Cambodia.pdf",
+        nepal: "/Pdf/Nepal.pdf",
+        malaysia: "/Pdf/Malaysia.pdf",
+        kyrgyzstan: "/Pdf/Kyrgyzstan.pdf",
+        singapore: "/Pdf/Singapore.pdf",
+        indonesia: "/Pdf/Indonesia.pdf",
+        tajikistan: "/Pdf/Tajikistan.pdf",
+
+        // Middle Eastern Countries
+        "saudi-arabia": "/Pdf/SaudiArabia.pdf",
+        uae: "/Pdf/UAE.pdf",
+        bahrain: "/Pdf/Bahrain.pdf",
+        qatar: "/Pdf/Qatar.pdf",
+        iran: "/Pdf/Iran.pdf",
+        turkey: "/Pdf/Turkey.pdf",
+
+        // African Countries
+        kenya: "/Pdf/Kenya.pdf",
+        uganda: "/Pdf/EastAfrica.pdf",
+        rwanda: "/Pdf/EastAfrica.pdf",
+        ethiopia: "/Pdf/Ethiopia.pdf",
+        "south-africa": "/Pdf/SouthAfrica.pdf",
+        morocco: "/Pdf/Morocco.pdf",
+
+        // European Countries
+        "united-kingdom": "/Pdf/UK.pdf",
+        albania: "/Pdf/Albania.pdf",
+        georgia: "/Pdf/Georgia.pdf",
+
+        // Other Countries
+        usa: "/Pdf/USA.pdf",
+        canada: "/Pdf/Canada.pdf",
+        australia: "/Pdf/Australia.pdf",
+        "new-zealand": "/Pdf/NewZealand.pdf",
+        "south-korea": "/Pdf/SouthKorea.pdf",
+        "hong-kong": "/Pdf/HongKong.pdf",
+        brunei: "/Pdf/Brunei.pdf",
+      };
+
+      function openCountryPdf(country) {
+        const pdfPath = countryPdfs[country];
+        if (pdfPath) {
+          // Check if running on a mobile device
+          const isMobile = /iPhone|iPad|iPod|Android/i.test(
+            navigator.userAgent
+          );
+
+          if (isMobile) {
+            // For mobile devices, open PDF in a new tab
+            window.open(pdfPath, "_blank");
+          } else {
+            // For desktop, use the popup
+            document.getElementById("pdf-iframe").src = pdfPath;
+            openPdfPopup();
+          }
+        }
+      }
+
+      function openPdfPopup() {
+        // Create and add overlay
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        document.body.appendChild(overlay);
+
+        // Prevent body scrolling when popup is open
+        document.body.style.overflow = "hidden";
+
+        // Show popup and overlay
+        document.getElementById("pdf-popup").style.display = "block";
+        overlay.style.display = "block";
+      }
+
+      function closePdfPopup() {
+        // Hide popup
+        document.getElementById("pdf-popup").style.display = "none";
+
+        // Remove overlay
+        const overlay = document.querySelector(".overlay");
+        if (overlay) {
+          overlay.remove();
+        }
+
+        // Restore body scrolling
+        document.body.style.overflow = "";
+
+        // Clear iframe src
+        document.getElementById("pdf-iframe").src = "";
+      }
+
+      // Close popup when clicking outside
+      document.addEventListener("click", function (event) {
+        const popup = document.getElementById("pdf-popup");
+        const overlay = document.querySelector(".overlay");
+        if (event.target === overlay) {
+          closePdfPopup();
+        }
+      });
+
+      // Prevent popup from closing when clicking inside it
+      document
+        .getElementById("pdf-popup")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll(".nav-links li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+    </script>
+    <style>
+      /* Keeping existing styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Sora", sans-serif;
+      }
+
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .services-page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      .main-heading {
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1rem;
+        background: #000;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding: 20px 0;
+      }
+
+      .service-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+        max-width: 900px; /* Added max-width for better proportions */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-image {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .service-content {
+        padding: 40px;
+      }
+
+      .service-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #2c3e50;
+      }
+
+      .service-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #666;
+        margin-bottom: 2rem;
+      }
+
+      .service-features {
+        list-style: none;
+        margin-bottom: 2rem;
+      }
+
+      .service-features li {
+        font-size: 1.05rem;
+        color: #555;
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      .service-features li::before {
+        content: "•";
+        color: #ffca28;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+      }
+
+      .additional-info {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 15px;
+        margin-top: 2rem;
+      }
+
+      .highlight-yellow {
+        color: #ffca28;
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .main-heading {
+          font-size: 2.5rem;
+        }
+
+        .service-content {
+          padding: 20px;
+        }
+
+        .service-title {
+          font-size: 1.75rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-content">
+        <p>Online Consultancy</p>
+        <a
+          href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+          target="_blank"
+          rel="noreferrer"
+          class="booking-btn"
+        >
+          Book Now
+        </a>
+        <button
+          onclick="openPdfPopup()"
+          class="view-btn"
+          style="display: flex; align-items: center; gap: 7px"
+        >
+          <i class="fas fa-eye" style="font-size: 12px"></i> View Service &
+          Charges
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating PDF Viewer -->
+    <div id="pdf-popup" class="pdf-popup">
+      <div class="popup-header">
+        <span>View Service & Charges</span>
+        <button onclick="closePdfPopup()" class="close-btn">&times;</button>
+      </div>
+      <iframe id="pdf-iframe" src="/Pdf/main.pdf"></iframe>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span
+          >🌍 Special Discount on Visit Visa Services - Limited Time
+          Offer!</span
+        >
+        <span
+          >✈️ Exclusive Travel Packages Available - Book Your Journey
+          Today!</span
+        >
+        <span>💼 Professional Job Seeker Visa Support - Get Started Now!</span>
+      </div>
+    </div>
+
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="index.html">
+            <img src="./assets/logo.png" alt="Visa Consultant Logo" />
+          </a>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <!-- Menu Header: Contains Logo and Close Icon -->
+          <div class="menu-header">
+            <img src="./assets/logo.jpg" alt="Menu Logo" />
+            <span
+              class="close-icon"
+              onclick="document.getElementById('nav-toggle').checked = false;"
+              >&times;</span
+            >
+          </div>
+          <!-- Navigation Links -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="services.html">Services</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="services-page">
+      <h1 class="main-heading">Our Services</h1>
+
+      <!-- Visa Consultation -->
+      <div class="service-card" id="visa-consultation">
+        <div class="service-image">
+          <img src="./services/service1.jpg" alt="Visa Consultation" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Visa Consultation and Advice</h2>
+          <p class="service-description">
+            Expert guidance through the complex visa application process with
+            personalized support and professional advice. Our consultants ensure
+            your application stands the best chance of success.
+          </p>
+          <ul class="service-features">
+            <li>
+              Comprehensive evaluation of visa eligibility and requirements
+            </li>
+            <li>Complete document preparation and verification assistance</li>
+            <li>Professional guidance for application form completion</li>
+            <li>Interview preparation and coaching sessions</li>
+            <li>Regular updates on application status and progress</li>
+            <li>Post-visa support and guidance for smooth transition</li>
+            <li>Expert handling of complex visa situations and appeals</li>
+            <li>Customized solutions for individual visa requirements</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              Our expert team stays updated with the latest immigration policies
+              and requirements for all major destinations. We provide end-to-end
+              support for tourist, business, student, and employment visas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visitor Visa -->
+      <div class="service-card" id="visitor-visa">
+        <div class="service-image">
+          <img src="./services/service2.jpg" alt="Visitor Visa" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Visitor Visa Processing</h2>
+          <p class="service-description">
+            Comprehensive visitor visa processing services with attention to
+            detail and maximum success rate. We handle everything from
+            application preparation to submission.
+          </p>
+          <ul class="service-features">
+            <li>
+              Complete assistance with application form filling and submission
+            </li>
+            <li>Thorough document verification and organization</li>
+            <li>Financial documentation preparation and guidance</li>
+            <li>Travel history assessment and presentation</li>
+            <li>Professional sponsorship letter drafting assistance</li>
+            <li>Accommodation and travel itinerary planning</li>
+            <li>Emergency visa processing support when needed</li>
+            <li>Follow-up services with embassies and consulates</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              We specialize in visitor visas for multiple countries, ensuring
+              all requirements are met with precision. Our service includes
+              guidance on financial requirements, accommodation arrangements,
+              and travel insurance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hajj and Umrah -->
+      <div class="service-card" id="hajj-umrah">
+        <div class="service-image">
+          <img
+            src="./services/Green Modern Special Ramadan Umrah Promo Instagram Post.png"
+            alt="Hajj and Umrah"
+          />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Economy Umrah Packages</h2>
+          <p class="service-description">
+            Complete Umrah visa processing and travel arrangements with
+            spiritual guidance and support throughout your journey.
+          </p>
+          <ul class="service-features">
+            <li>Comprehensive visa processing for Umrah</li>
+            <li>Customized package selection based on your needs</li>
+            <li>Premium accommodation arrangements in Makkah and Madinah</li>
+            <li>Transportation services throughout your stay</li>
+            <li>Religious guidance and preparation assistance</li>
+            <li>Special group and family package options</li>
+            <li>Complete medical insurance coverage</li>
+            <li>24/7 on-ground support during your pilgrimage</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              We provide end-to-end support for your spiritual journey, ensuring
+              a comfortable and meaningful pilgrimage experience with all
+              arrangements handled professionally.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job Services -->
+      <div class="service-card" id="job-services">
+        <div class="service-image">
+          <img src="./services/service3.jpg" alt="Job Services" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Job Services</h2>
+          <p class="service-description">
+            Comprehensive employment solutions and work visa processing for
+            international careers, connecting you with opportunities worldwide.
+          </p>
+          <ul class="service-features">
+            <li>International job placement and career counseling</li>
+            <li>Complete work visa application processing</li>
+            <li>Professional CV and resume optimization</li>
+            <li>Interview preparation and coaching</li>
+            <li>Skill assessment and certification guidance</li>
+            <li>Employment contract review and negotiation</li>
+            <li>Relocation assistance and support</li>
+            <li>Post-placement follow-up services</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              Our job services team works with reputable employers worldwide to
+              secure the best opportunities for our clients, handling all
+              aspects of work visa processing and placement.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hotel Booking -->
+      <div class="service-card" id="hotel-booking">
+        <div class="service-image">
+          <img src="./services/service4.jpg" alt="Hotel Booking" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Worldwide Hotel Booking</h2>
+          <p class="service-description">
+            Premium hotel booking services with exclusive rates and
+            comprehensive support for all your accommodation needs.
+          </p>
+          <ul class="service-features">
+            <li>Access to global hotel networks and exclusive deals</li>
+            <li>Best rate guarantees for all bookings</li>
+            <li>Luxury and budget accommodation options</li>
+            <li>Specialized group booking services</li>
+            <li>24/7 booking support and assistance</li>
+            <li>Flexible cancellation and modification policies</li>
+            <li>Special requests and arrangements handling</li>
+            <li>Loyalty program benefits and upgrades</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              We partner with hotels worldwide to offer the best rates and
+              services, ensuring comfortable stays for all our clients
+              regardless of budget or preference.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Travel Insurance -->
+      <div class="service-card" id="travel-insurance">
+        <div class="service-image">
+          <img src="./services/service5.jpg" alt="Travel Insurance" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Travel Insurance</h2>
+          <p class="service-description">
+            Comprehensive travel insurance solutions for worry-free journeys,
+            covering all aspects of your travel needs.
+          </p>
+          <ul class="service-features">
+            <li>Multiple insurance plan options for different needs</li>
+            <li>Medical emergency coverage worldwide</li>
+            <li>Trip cancellation and interruption protection</li>
+            <li>Baggage loss and delay coverage</li>
+            <li>24/7 emergency assistance services</li>
+            <li>Multi-trip annual plans available</li>
+            <li>Competitive rates and quick processing</li>
+            <li>Assistance with claims processing</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              We offer comprehensive travel insurance packages that ensure
+              you're protected throughout your journey, with options suitable
+              for all types of travelers.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Embassy Appointments -->
+      <div class="service-card" id="embassy-appointments">
+        <div class="service-image">
+          <img src="./services/service6.jpg" alt="Embassy Appointments" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Embassy Appointment Services</h2>
+          <p class="service-description">
+            Professional assistance in securing and managing embassy
+            appointments, ensuring smooth visa application processes.
+          </p>
+          <ul class="service-features">
+            <li>Priority embassy appointment booking assistance</li>
+            <li>Document preparation for embassy interviews</li>
+            <li>Interview guidance and preparation</li>
+            <li>Application tracking and follow-up</li>
+            <li>Emergency appointment arrangements</li>
+            <li>Embassy requirement counseling</li>
+            <li>Application status monitoring</li>
+            <li>Post-appointment support services</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              Our embassy appointment services ensure you're well-prepared and
+              confident for your visa interview, with all necessary
+              documentation properly arranged.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ticketing Services -->
+      <div class="service-card" id="ticketing-services">
+        <div class="service-image">
+          <img src="./services/service8.jpg" alt="Ticketing Services" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Ticketing Services</h2>
+          <p class="service-description">
+            Comprehensive travel ticketing solutions for all your journey needs,
+            with access to the best rates and routes.
+          </p>
+          <ul class="service-features">
+            <li>International and domestic flight bookings</li>
+            <li>Special fares and promotional deals</li>
+            <li>Group travel arrangements</li>
+            <li>Multi-city routing options</li>
+            <li>24/7 booking assistance</li>
+            <li>Schedule change and cancellation support</li>
+            <li>Corporate travel solutions</li>
+            <li>Emergency booking services</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              We provide complete ticketing services with competitive rates and
+              flexible booking options for all types of travel requirements.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tourism Services -->
+      <div class="service-card" id="tourism-services">
+        <div class="service-image">
+          <img src="./services/service9.jpeg" alt="Tourism Services" />
+        </div>
+        <div class="service-content">
+          <h2 class="service-title">Tourism Services</h2>
+          <p class="service-description">
+            Complete tourism packages and services for memorable travel
+            experiences worldwide.
+          </p>
+          <ul class="service-features">
+            <li>Customized tour packages for all destinations</li>
+            <li>Local and international guided tours</li>
+            <li>Adventure tourism arrangements</li>
+            <li>Cultural and historical tours</li>
+            <li>Luxury vacation planning</li>
+            <li>Group tour coordination</li>
+            <li>Special interest tour arrangements</li>
+            <li>Local transport and guide services</li>
+          </ul>
+          <div class="additional-info">
+            <p>
+              Our tourism services cater to all types of travelers, ensuring
+              memorable experiences with professional guides and well-planned
+              itineraries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

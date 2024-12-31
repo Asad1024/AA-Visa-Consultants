@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script>
+      let currentSlide = 1;
+      const totalSlides = 3;
+
+      setInterval(() => {
+        document.getElementById(`carousel-${currentSlide}`).checked = true;
+        currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      }, 3000); // Changes slide every 5 seconds
+
+      // Add this to your existing script section
+      const countryPdfs = {
+        // Asian Countries
+        china: "/Pdf/China.pdf",
+        japan: "/Pdf/Japan.pdf",
+        azerbaijan: "/Pdf/Azerbaijan.pdf",
+        "sri-lanka": "/Pdf/SriLanka.pdf",
+        cambodia: "/Pdf/Cambodia.pdf",
+        nepal: "/Pdf/Nepal.pdf",
+        malaysia: "/Pdf/Malaysia.pdf",
+        kyrgyzstan: "/Pdf/Kyrgyzstan.pdf",
+        singapore: "/Pdf/Singapore.pdf",
+        indonesia: "/Pdf/Indonesia.pdf",
+        tajikistan: "/Pdf/Tajikistan.pdf",
+
+        // Middle Eastern Countries
+        "saudi-arabia": "/Pdf/SaudiArabia.pdf",
+        uae: "/Pdf/UAE.pdf",
+        bahrain: "/Pdf/Bahrain.pdf",
+        qatar: "/Pdf/Qatar.pdf",
+        iran: "/Pdf/Iran.pdf",
+        turkey: "/Pdf/Turkey.pdf",
+
+        // African Countries
+        kenya: "/Pdf/Kenya.pdf",
+        uganda: "/Pdf/EastAfrica.pdf",
+        rwanda: "/Pdf/EastAfrica.pdf",
+        ethiopia: "/Pdf/Ethiopia.pdf",
+        "south-africa": "/Pdf/SouthAfrica.pdf",
+        morocco: "/Pdf/Morocco.pdf",
+
+        // European Countries
+        "united-kingdom": "/Pdf/UK.pdf",
+        albania: "/Pdf/Albania.pdf",
+        georgia: "/Pdf/Georgia.pdf",
+
+        // Other Countries
+        usa: "/Pdf/USA.pdf",
+        canada: "/Pdf/Canada.pdf",
+        australia: "/Pdf/Australia.pdf",
+        "new-zealand": "/Pdf/NewZealand.pdf",
+        "south-korea": "/Pdf/SouthKorea.pdf",
+        "hong-kong": "/Pdf/HongKong.pdf",
+        brunei: "/Pdf/Brunei.pdf",
+      };
+
+      function openCountryPdf(country) {
+        const pdfPath = countryPdfs[country];
+        if (pdfPath) {
+          // Check if running on a mobile device
+          const isMobile = /iPhone|iPad|iPod|Android/i.test(
+            navigator.userAgent
+          );
+
+          if (isMobile) {
+            // For mobile devices, open PDF in a new tab
+            window.open(pdfPath, "_blank");
+          } else {
+            // For desktop, use the popup
+            document.getElementById("pdf-iframe").src = pdfPath;
+            openPdfPopup();
+          }
+        }
+      }
+
+      function openPdfPopup() {
+        // Create and add overlay
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        document.body.appendChild(overlay);
+
+        // Prevent body scrolling when popup is open
+        document.body.style.overflow = "hidden";
+
+        // Show popup and overlay
+        document.getElementById("pdf-popup").style.display = "block";
+        overlay.style.display = "block";
+      }
+
+      function closePdfPopup() {
+        // Hide popup
+        document.getElementById("pdf-popup").style.display = "none";
+
+        // Remove overlay
+        const overlay = document.querySelector(".overlay");
+        if (overlay) {
+          overlay.remove();
+        }
+
+        // Restore body scrolling
+        document.body.style.overflow = "";
+
+        // Clear iframe src
+        document.getElementById("pdf-iframe").src = "";
+      }
+
+      // Close popup when clicking outside
+      document.addEventListener("click", function (event) {
+        const popup = document.getElementById("pdf-popup");
+        const overlay = document.querySelector(".overlay");
+        if (event.target === overlay) {
+          closePdfPopup();
+        }
+      });
+
+      // Prevent popup from closing when clicking inside it
+      document
+        .getElementById("pdf-popup")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll(".nav-links li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-content">
+        <p>Online Consultancy</p>
+        <a
+          href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+          target="_blank"
+          rel="noreferrer"
+          class="booking-btn"
+        >
+          Book Now
+        </a>
+        <button
+          onclick="openPdfPopup()"
+          class="view-btn"
+          style="display: flex; align-items: center; gap: 7px"
+        >
+          <i class="fas fa-eye" style="font-size: 12px"></i> View Service &
+          Charges
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating PDF Viewer -->
+    <div id="pdf-popup" class="pdf-popup">
+      <div class="popup-header">
+        <span>View Service & Charges</span>
+        <button onclick="closePdfPopup()" class="close-btn">&times;</button>
+      </div>
+      <iframe id="pdf-iframe" src="/Pdf/main.pdf"></iframe>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span
+          >🌍 Special Discount on Visit Visa Services - Limited Time
+          Offer!</span
+        >
+        <span
+          >✈️ Exclusive Travel Packages Available - Book Your Journey
+          Today!</span
+        >
+        <span>💼 Professional Job Seeker Visa Support - Get Started Now!</span>
+      </div>
+    </div>
+
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="index.html">
+            <img src="./assets/logo.png" alt="Visa Consultant Logo" />
+          </a>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <!-- Menu Header: Contains Logo and Close Icon -->
+          <div class="menu-header">
+            <img src="./assets/logo.jpg" alt="Menu Logo" />
+            <span
+              class="close-icon"
+              onclick="document.getElementById('nav-toggle').checked = false;"
+              >&times;</span
+            >
+          </div>
+          <!-- Navigation Links -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="services.html">Services</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="contact">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h1>Contact Us</h1>
+          <p>
+            If you have any questions or need further information, please don't
+            hesitate to contact us. We are always here to assist you with your
+            visa and immigration needs.
+          </p>
+          <div class="contact-details">
+            <p>
+              <strong>Email:</strong>
+              <a href="mailto:info@visaconsultant.com"
+                >consultantsaa836@gmail.com</a
+              >
+            </p>
+            <p>
+              <strong>Phone:</strong>
+              <a href="tel:+1234567890">+92 329188786</a>
+            </p>
+            <p>
+              <strong>Address:</strong> G 55 Zainab Tower, Link Road Modal Town
+              Lahore
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-image">
+          <img src="./assets/contact.jpg" alt="Contact Us Image" />
+        </div>
+      </div>
+      <h2>Follow Us</h2>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61571135382100&mibextid=ZbWKwL" target="_blank">
+          <img src="./assets/facebook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com/aavisaconsultants/profilecard/?igsh=MWswZ2FjdHdlbjBybQ==" target="_blank">
+          <img src="./assets/instagram.png" alt="Instagram" />
+        </a>
+        <a href="https://www.linkedin.com/in/aandavisaconsultants-consultants-860334344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+          <img src="./assets/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://youtube.com/@visaconsultancy3?si=Cvw_FEy1Hfuid60W" target="_blank">
+          <img src="./assets/youtube.png" alt="Youtube" />
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 AA Visa Consultant. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

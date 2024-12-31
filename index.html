@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visa Consultant</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Add this in the head section -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <script>
+      let currentSlide = 1;
+      const totalSlides = 3;
+
+      setInterval(() => {
+        document.getElementById(`carousel-${currentSlide}`).checked = true;
+        currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      }, 3000); // Changes slide every 5 seconds
+
+      // Add this to your existing script section
+      const countryPdfs = {
+        // Asian Countries
+        china: "/Pdf/China.pdf",
+        japan: "/Pdf/Japan.pdf",
+        azerbaijan: "/Pdf/Azerbaijan.pdf",
+        "sri-lanka": "/Pdf/SriLanka.pdf",
+        cambodia: "/Pdf/Cambodia.pdf",
+        nepal: "/Pdf/Nepal.pdf",
+        malaysia: "/Pdf/Malaysia.pdf",
+        kyrgyzstan: "/Pdf/Kyrgyzstan.pdf",
+        singapore: "/Pdf/Singapore.pdf",
+        indonesia: "/Pdf/Indonesia.pdf",
+        tajikistan: "/Pdf/Tajikistan.pdf",
+
+        // Middle Eastern Countries
+        "saudi-arabia": "/Pdf/SaudiArabia.pdf",
+        uae: "/Pdf/UAE.pdf",
+        bahrain: "/Pdf/Bahrain.pdf",
+        qatar: "/Pdf/Qatar.pdf",
+        iran: "/Pdf/Iran.pdf",
+        turkey: "/Pdf/Turkey.pdf",
+
+        // African Countries
+        kenya: "/Pdf/Kenya.pdf",
+        uganda: "/Pdf/EastAfrica.pdf",
+        rwanda: "/Pdf/EastAfrica.pdf",
+        ethiopia: "/Pdf/Ethiopia.pdf",
+        "south-africa": "/Pdf/SouthAfrica.pdf",
+        morocco: "/Pdf/Morocco.pdf",
+
+        // European Countries
+        "united-kingdom": "/Pdf/UK.pdf",
+        albania: "/Pdf/Albania.pdf",
+        georgia: "/Pdf/Georgia.pdf",
+
+        // Other Countries
+        usa: "/Pdf/USA.pdf",
+        canada: "/Pdf/Canada.pdf",
+        australia: "/Pdf/Australia.pdf",
+        "new-zealand": "/Pdf/NewZealand.pdf",
+        "south-korea": "/Pdf/SouthKorea.pdf",
+        "hong-kong": "/Pdf/HongKong.pdf",
+        brunei: "/Pdf/Brunei.pdf",
+      };
+
+      function openCountryPdf(country) {
+        const pdfPath = countryPdfs[country];
+        if (pdfPath) {
+          // Check if running on a mobile device
+          const isMobile = /iPhone|iPad|iPod|Android/i.test(
+            navigator.userAgent
+          );
+
+          if (isMobile) {
+            // For mobile devices, open PDF in a new tab
+            window.open(pdfPath, "_blank");
+          } else {
+            // For desktop, use the popup
+            document.getElementById("pdf-iframe").src = pdfPath;
+            openPdfPopup();
+          }
+        }
+      }
+
+      function openMainPdf() {
+        const mainPdfPath = "/Pdf/main.pdf";
+
+        // Check if running on a mobile device
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (isMobile) {
+          // For mobile devices, open PDF in a new tab
+          window.open(mainPdfPath, "_blank");
+        } else {
+          // For desktop, use the popup
+          document.getElementById("pdf-iframe").src = mainPdfPath;
+          openPdfPopup();
+        }
+      }
+
+      function openPdfPopup() {
+        // Create and add overlay
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        document.body.appendChild(overlay);
+
+        // Prevent body scrolling when popup is open
+        document.body.style.overflow = "hidden";
+
+        // Show popup and overlay
+        document.getElementById("pdf-popup").style.display = "block";
+        overlay.style.display = "block";
+      }
+
+      function closePdfPopup() {
+        // Hide popup
+        document.getElementById("pdf-popup").style.display = "none";
+
+        // Remove overlay
+        const overlay = document.querySelector(".overlay");
+        if (overlay) {
+          overlay.remove();
+        }
+
+        // Restore body scrolling
+        document.body.style.overflow = "";
+
+        // Clear iframe src
+        document.getElementById("pdf-iframe").src = "";
+      }
+
+      // Close popup when clicking outside
+      document.addEventListener("click", function (event) {
+        const popup = document.getElementById("pdf-popup");
+        const overlay = document.querySelector(".overlay");
+        if (event.target === overlay) {
+          closePdfPopup();
+        }
+      });
+
+      // Prevent popup from closing when clicking inside it
+      document
+        .getElementById("pdf-popup")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll(".nav-links li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+    </script>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-content">
+        <p>Online Consultancy</p>
+        <div class="top-buttons">
+                  <a
+          href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+          target="_blank"
+          rel="noreferrer"
+          class="booking-btn"
+        >
+          Book Now
+        </a>
+        <button
+          onclick="openMainPdf()"
+          class="view-btn"
+          style="display: flex; align-items: center; gap: 7px"
+        >
+          <i class="fas fa-eye" style="font-size: 12px"></i> View Service &
+          Charges
+        </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating PDF Viewer -->
+    <div id="pdf-popup" class="pdf-popup">
+      <div class="popup-header">
+        <span>View Service & Charges</span>
+        <button onclick="closePdfPopup()" class="close-btn">&times;</button>
+      </div>
+      <iframe id="pdf-iframe" src="/Pdf/main.pdf"></iframe>
+    </div>
+
+    <!-- Add this right after the top bar and before the header -->
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span
+          >🌍 Special Discount on Visit Visa Services - Limited Time
+          Offer!</span
+        >
+        <span
+          >✈️ Exclusive Travel Packages Available - Book Your Journey
+          Today!</span
+        >
+        <span>💼 Professional Job Seeker Visa Support - Get Started Now!</span>
+      </div>
+    </div>
+
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="index.html">
+            <img src="./assets/logo.png" alt="Visa Consultant Logo" />
+          </a>
+        </div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul class="nav-links">
+          <!-- Menu Header: Contains Logo and Close Icon -->
+          <div class="menu-header">
+            <img src="./assets/logo.jpg" alt="Menu Logo" />
+            <span
+              class="close-icon"
+              onclick="document.getElementById('nav-toggle').checked = false;"
+              >&times;</span
+            >
+          </div>
+          <!-- Navigation Links -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="services.html">Services</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="banner-carousel">
+      <div class="carousel">
+        <input type="radio" name="carousel" id="carousel-1" checked />
+        <input type="radio" name="carousel" id="carousel-2" />
+        <input type="radio" name="carousel" id="carousel-3" />
+
+        <div class="carousel-slides">
+          <div class="slide">
+            <img src="./banner/banner.png" alt="Visa Consultant Banner 1" />
+          </div>
+          <div class="slide">
+            <img src="./banner/Blue Yellow Modern Travel Agency Service Banner (1700 x 560 px) (2).png" alt="Visa Consultant Banner 2" />
+          </div>
+          <div class="slide">
+            <img src="./banner/Blue Modern Visa Processing Services Landscape Banner  (1650 x 520 px) (1700 x 560 px) (1700 x 560 px) (2).png" alt="Visa Consultant Banner 3" />
+          </div>
+        </div>
+
+        <div class="carousel-navigation">
+          <label for="carousel-1" class="nav-dot"></label>
+          <label for="carousel-2" class="nav-dot"></label>
+          <label for="carousel-3" class="nav-dot"></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="services">
+      <h2>Our Services</h2>
+      <div class="service-box">
+        <div class="box">
+          <a href="./servicePage/visa_advise.html">
+            <img
+              src="./services/service1.jpg"
+              alt="Visa Consultation and Advice"
+            />
+            <p class="service-title">Visa Consultation and Advice</p>
+          </a>
+          <a href="./servicePage/visa_advise.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/visitor-visa.html">
+            <img
+              src="./services/service2.jpg"
+              alt="Visitor Visa Application Processing"
+            />
+            <p class="service-title">Visitor Visa Application Processing</p>
+          </a>
+          <a href="./servicePage/visitor-visa.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/hajj-umrah.html">
+            <img
+              src="./services/Green Modern Special Ramadan Umrah Promo Instagram Post.png"
+              alt="Hajj and Umrah Services"
+            />
+            <p class="service-title">Economy Umrah Packages</p>
+          </a>
+          <a href="./servicePage/hajj-umrah.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/job-services.html">
+            <img src="./services/service3.jpg" alt="Job Services" />
+            <p class="service-title">Job Services</p>
+          </a>
+          <a href="./servicePage/job-services.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/hotel-booking.html">
+            <img src="./services/service4.jpg" alt="Worldwide Hotel Booking" />
+            <p class="service-title">Worldwide Hotel Booking</p>
+          </a>
+          <a href="./servicePage/hotel-booking.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/travel-insurance.html">
+            <img src="./services/service5.jpg" alt="Travel Insurance" />
+            <p class="service-title">Travel Insurance</p>
+          </a>
+          <a href="./servicePage/travel-insurance.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/embassy-appointments.html">
+            <img
+              src="./services/service6.jpg"
+              alt="Embassy Appointment Services"
+            />
+            <p class="service-title">Embassy Appointment Services</p>
+          </a>
+          <a href="./servicePage/embassy-appointments.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/ticketing-services.html">
+            <img src="./services/service8.jpg" alt="Ticketing Services" />
+            <p class="service-title">Ticketing Services</p>
+          </a>
+          <a href="./servicePage/job-services.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+        <div class="box">
+          <a href="./servicePage/tourism-services.html">
+            <img src="./services/service9.jpeg" alt="Tourism Services" />
+            <p class="service-title">Tourism Services</p>
+          </a>
+          <a href="./servicePage/tourism-services.html" class="details-btn"
+            >View Details</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Country section -->
+    <section class="country-banner" id="canada">
+      <h2>Canada Sticker Visit Visa Sercies</h2>
+      <a href="./pages/canada.html">
+        <img src="./countries/canada-flag-banner.jpg" alt="Canada Banner" />
+      </a>
+      <p>
+        We offer expert visa consultation for Canadian immigration, helping you
+        with all necessary paperwork and processes to ensure a smooth
+        experience.
+      </p>
+      <a href="./pages/canada.html" class="details-btn">View Details</a>
+      <div class="visa-services">
+        <ul>
+          <li>GC Key Account / IRCC New Portal Account</li>
+          <li>Visa Application Forms Filling</li>
+          <li>Cover Letter & Travel Itinerary</li>
+          <li>Post Paid Hotel Booking</li>
+          <li>Airline Ticket Reservation</li>
+          <li>7 Days Travel Insurance</li>
+          <li>VFS Global Gerrys Office Appointment Assistance for Biometric</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="country-banner" id="usa">
+      <h2>USA Sticker Visit Visa Sercies</h2>
+      <a href="./pages/usa.html">
+        <img src="./countries/usa-banner.jpg" alt="USA Banner" />
+      </a>
+      <p>
+        Our specialized team will assist you in obtaining a visa to the United
+        States, whether for business, tourism, or permanent residency.
+      </p>
+      <a href="./pages/usa.html" class="details-btn">View Details</a>
+      <div class="visa-services">
+        <ul>
+          <li>DS-160 Visa Application Form Filling</li>
+          <li>Cover Letter & Travel Itinerary</li>
+          <li>Post Paid Hotel Booking</li>
+          <li>Airline Ticket Reservation</li>
+          <li>7 Days Travel Insurance</li>
+          <li>Embassy Appointment Assistance For Interview</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="country-banner" id="australia">
+      <h2>Australia E Visit Visa Sercies</h2>
+      <a href="./pages/australia.html">
+        <img src="./countries/aus-banner.jpg" alt="Australia Banner" />
+      </a>
+      <p>
+        Our visa experts provide you with full support in securing an Australian
+        visa, whether you're planning to work, study, or live in Australia.
+      </p>
+      <a href="./pages/australia.html" class="details-btn">View Details</a>
+      <div class="visa-services">
+        <ul>
+          <li>Visa Application Forms Filling</li>
+          <li>Cover Letter & Travel Itinerary</li>
+          <li>Post Paid Hotel Booking</li>
+          <li>Airline Ticket Reservation</li>
+          <li>7 Days Travel Insurance</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="country-banner" id="uk">
+      <h2>UK Sticker Visit Visa Sercies</h2>
+      <a href="./pages/uk.html">
+        <img src="./countries/uk-banner.jpg" alt="UK Banner" />
+      </a>
+      <p>
+        With our guidance, we will help you navigate the UK immigration process,
+        ensuring all applications are handled professionally.
+      </p>
+      <a href="./pages/uk.html" class="details-btn">View Details</a>
+      <div class="visa-services">
+        <ul>
+          <li>Cover Letter & Travel Itinerary</li>
+          <li>Post Paid Hotel Booking</li>
+          <li>Airline Ticket Reservation</li>
+          <li>7 Days Travel Insurance</li>
+          <li>Documents Uploading Assistance</li>
+          <li>VFS Global Gerrys Office Appointment Assistance for Biometric</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="countries">
+      <h2>Visit Visa Services for These Countries</h2>
+
+      <!-- Asian Countries Section -->
+      <div class="country-section">
+        <h3>Asian Countries</h3>
+        <div class="country-list">
+          <div class="country">
+            <img src="./countries/china.jpg" alt="China" />
+            <p>China</p>
+            <button onclick="openCountryPdf('china')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/japan.jpg" alt="Japan" />
+            <p>Japan</p>
+            <button onclick="openCountryPdf('japan')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/azerbaijan.jpg" alt="Azerbaijan" />
+            <p>Azerbaijan</p>
+            <button onclick="openCountryPdf('azerbaijan')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/sri-lanka.png" alt="Sri Lanka" />
+            <p>Sri Lanka</p>
+            <button onclick="openCountryPdf('sri-lanka')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/combodia.jpg" alt="Cambodia" />
+            <p>Cambodia</p>
+            <button onclick="openCountryPdf('cambodia')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/nepal.png" alt="Nepal" />
+            <p>Nepal</p>
+            <button onclick="openCountryPdf('nepal')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/malaysia.png" alt="Malaysia" />
+            <p>Malaysia</p>
+            <button onclick="openCountryPdf('malaysia')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/kyrgyzstan.jpg" alt="Kyrgyzstan" />
+            <p>Kyrgyzstan</p>
+            <button onclick="openCountryPdf('kyrgyzstan')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/singapore.jpg" alt="Singapore" />
+            <p>Singapore</p>
+            <button onclick="openCountryPdf('singapore')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/indonesia.png" alt="Indonesia" />
+            <p>Indonesia</p>
+            <button onclick="openCountryPdf('indonesia')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/tajikistan.jpg" alt="Tajikistan" />
+            <p>Tajikistan</p>
+            <button onclick="openCountryPdf('tajikistan')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Eastern Countries Section -->
+      <div class="country-section">
+        <h3>Middle Eastern Countries</h3>
+        <div class="country-list">
+          <div class="country">
+            <img src="./countries/saudia.jpg" alt="Saudia Arabia" />
+            <p>Saudia Arabia</p>
+            <button onclick="openCountryPdf('saudi-arabia')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/uae.jpg" alt="UAE" />
+            <p>UAE</p>
+            <button onclick="openCountryPdf('uae')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/bahrain.jpg" alt="Bahrain" />
+            <p>Bahrain</p>
+            <button onclick="openCountryPdf('bahrain')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/qatar.jpg" alt="Qatar" />
+            <p>Qatar</p>
+            <button onclick="openCountryPdf('qatar')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/iran.jpg" alt="Iran" />
+            <p>Iran</p>
+            <button onclick="openCountryPdf('iran')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/turkey.jpg" alt="Turkey" />
+            <p>Turkey</p>
+            <button onclick="openCountryPdf('turkey')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- African Countries Section -->
+      <div class="country-section">
+        <h3>African Countries</h3>
+        <div class="country-list">
+          <div class="country">
+            <img src="./countries/kenya.jpg" alt="Kenya" />
+            <p>Kenya</p>
+            <button onclick="openCountryPdf('kenya')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/uganda.jpg" alt="Uganda" />
+            <p>Uganda</p>
+            <button onclick="openCountryPdf('uganda')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/rawanda.jpg" alt="Rwanda" />
+            <p>Rwanda</p>
+            <button onclick="openCountryPdf('rwanda')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/ethopia.jpg" alt="Ethiopia" />
+            <p>Ethiopia</p>
+            <button onclick="openCountryPdf('ethiopia')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/south africa.jpg" alt="South Africa" />
+            <p>South Africa</p>
+            <button onclick="openCountryPdf('south-africa')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/moroco.jpg" alt="Morocco" />
+            <p>Morocco</p>
+            <button onclick="openCountryPdf('morocco')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- European Countries Section -->
+      <div class="country-section">
+        <h3>European Countries</h3>
+        <div class="country-list">
+          <div class="country">
+            <img src="./countries/uk.jpg" alt="United Kingdom" />
+            <p>United Kingdom</p>
+            <button onclick="openCountryPdf('united-kingdom')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/albania.jpg" alt="Albania" />
+            <p>Albania</p>
+            <button onclick="openCountryPdf('albania')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/georgia.jpg" alt="Georgia" />
+            <p>Georgia</p>
+            <button onclick="openCountryPdf('georgia')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Countries Section -->
+      <div class="country-section">
+        <h3>Other Countries</h3>
+        <div class="country-list">
+          <div class="country">
+            <img src="./countries/usa.jpg" alt="USA" />
+            <p>USA</p>
+            <button onclick="openCountryPdf('usa')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/canada.jpg" alt="Canada" />
+            <p>Canada</p>
+            <button onclick="openCountryPdf('canada')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/australia.jpg" alt="Australia" />
+            <p>Australia</p>
+            <button onclick="openCountryPdf('australia')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/newz.jpg" alt="New Zealand" />
+            <p>New Zealand</p>
+            <button onclick="openCountryPdf('new-zealand')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/south-korea.png" alt="South Korea" />
+            <p>South Korea</p>
+            <button onclick="openCountryPdf('south-korea')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/hong.jpg" alt="Hong Kong" />
+            <p>Hong Kong</p>
+            <button onclick="openCountryPdf('hong-kong')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+          <div class="country">
+            <img src="./countries/brunei.jpg" alt="Brunei" />
+            <p>Brunei</p>
+            <button onclick="openCountryPdf('brunei')" class="view-btn">
+              <i class="fas fa-eye" style="font-size: 12px"></i> View
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="owner-section">
+      <h2>Meet Our Founders</h2>
+      <div class="owner-container">
+        <!-- Owner 1 -->
+        <div class="owner-box">
+          <div class="owner-image-container">
+            <img src="./assets/owner-1.png" alt="Raja Ali Raza - CEO" />
+          </div>
+          <div class="owner-info">
+            <h3>Raja Ali Raza</h3>
+            <span class="title">Founder & Chief Executive Officer (CEO)</span>
+            <p class="description">
+              Raja Ali Raza, the visionary CEO of AA Visa Consultant, has over a
+              decade of experience in business leadership. He has expanded the
+              company's global reach with a client-first approach, ensuring
+              unmatched visa consultancy services that make global travel
+              hassle-free for clients worldwide.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-icon">in</a>
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">t</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Owner 2 -->
+        <div class="owner-box">
+          <div class="owner-image-container">
+            <img src="./assets/owner-2.png" alt="Raja Ashir Ali - Director" />
+          </div>
+          <div class="owner-info">
+            <h3>Raja Ashir Ali</h3>
+            <span class="title">Director & Operations Manager</span>
+            <p class="description">
+              Raja Ashir Ali, the Director of AA Visa Consultant, oversees daily
+              operations, ensuring smooth functioning across departments. His
+              leadership in operational efficiency and close collaboration with
+              the legal and consulting teams ensures personalized, seamless visa
+              services for every client.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-icon">in</a>
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">t</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Visa Consultant. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
