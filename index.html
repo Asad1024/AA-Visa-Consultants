@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
@@ -17,7 +25,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script>
       let currentSlide = 1;
       const totalSlides = 3;
@@ -179,22 +188,22 @@
       <div class="top-content">
         <p>Online Consultancy</p>
         <div class="top-buttons">
-                  <a
-          href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
-          target="_blank"
-          rel="noreferrer"
-          class="booking-btn"
-        >
-          Book Now
-        </a>
-        <button
-          onclick="openMainPdf()"
-          class="view-btn"
-          style="display: flex; align-items: center; gap: 7px"
-        >
-          <i class="fas fa-eye" style="font-size: 12px"></i> View Service &
-          Charges
-        </button>
+          <a
+            href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+            target="_blank"
+            rel="noreferrer"
+            class="booking-btn"
+          >
+            Book Now
+          </a>
+          <button
+            onclick="openMainPdf()"
+            class="view-btn"
+            style="display: flex; align-items: center; gap: 7px"
+          >
+            <i class="fas fa-eye" style="font-size: 12px"></i> View Services &
+            Charges
+          </button>
         </div>
       </div>
     </div>
@@ -266,10 +275,16 @@
             <img src="./banner/banner2.png" alt="Visa Consultant Banner 1" />
           </div>
           <div class="slide">
-            <img src="./banner/Blue Yellow Modern Travel Agency Service Banner (1700 x 560 px) (2).png" alt="Visa Consultant Banner 2" />
+            <img
+              src="./banner/Blue Yellow Modern Travel Agency Service Banner (1700 x 560 px) (2).png"
+              alt="Visa Consultant Banner 2"
+            />
           </div>
           <div class="slide">
-            <img src="./banner/Blue Modern Visa Processing Services Landscape Banner  (1650 x 520 px) (1700 x 560 px) (1700 x 560 px) (2).png" alt="Visa Consultant Banner 3" />
+            <img
+              src="./banner/Blue Modern Visa Processing Services Landscape Banner  (1650 x 520 px) (1700 x 560 px) (1700 x 560 px) (2).png"
+              alt="Visa Consultant Banner 3"
+            />
           </div>
         </div>
 
@@ -364,7 +379,7 @@
             <img src="./services/service8.jpg" alt="Ticketing Services" />
             <p class="service-title">Ticketing Services</p>
           </a>
-          <a href="./servicePage/job-services.html" class="details-btn"
+          <a href="./servicePage/ticketing-services.html" class="details-btn"
             >View Details</a
           >
         </div>
@@ -382,7 +397,7 @@
 
     <!-- Country section -->
     <section class="country-banner" id="canada">
-      <h2>Canada Sticker Visit Visa Sercies</h2>
+      <h2>Canada Sticker Visit Visa Services</h2>
       <a href="./pages/canada.html">
         <img src="./countries/canada-flag-banner.jpg" alt="Canada Banner" />
       </a>
@@ -406,7 +421,7 @@
     </section>
 
     <section class="country-banner" id="usa">
-      <h2>USA Sticker Visit Visa Sercies</h2>
+      <h2>USA Sticker Visit Visa Services</h2>
       <a href="./pages/usa.html">
         <img src="./countries/usa-banner.jpg" alt="USA Banner" />
       </a>
@@ -428,7 +443,7 @@
     </section>
 
     <section class="country-banner" id="australia">
-      <h2>Australia E Visit Visa Sercies</h2>
+      <h2>Australia E Visit Visa Services</h2>
       <a href="./pages/australia.html">
         <img src="./countries/aus-banner.jpg" alt="Australia Banner" />
       </a>
@@ -449,7 +464,7 @@
     </section>
 
     <section class="country-banner" id="uk">
-      <h2>UK Sticker Visit Visa Sercies</h2>
+      <h2>UK Sticker Visit Visa Services</h2>
       <a href="./pages/uk.html">
         <img src="./countries/uk-banner.jpg" alt="UK Banner" />
       </a>
@@ -781,8 +796,107 @@
       </div>
     </section>
 
-    <footer>
-      <p>&copy; 2024 Visa Consultant. All rights reserved.</p>
-    </footer>
+    <div class="footer-dark">
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-3 item">
+              <h3>Services</h3>
+              <ul>
+                <li>
+                  <a href="./servicePage/visa_advise.html"
+                    >Visa Consultation and Advice</a
+                  >
+                </li>
+                <li>
+                  <a href="./servicePage/visitor-visa.html"
+                    >Visitor Visa Application Processing
+                  </a>
+                </li>
+                <li>
+                  <a href="./servicePage/hajj-umrah.html"
+                    >Economy Umrah Packages</a
+                  >
+                </li>
+                <li>
+                  <a href="./servicePage/job-services.html">Job Services</a>
+                </li>
+                <li>
+                  <a href="./servicePage/hotel-booking.html"
+                    >Worldwide Hotel Booking</a
+                  >
+                </li>
+                <li>
+                  <a href="./servicePage/travel-insurance.html"
+                    >Travel Insurance</a
+                  >
+                </li>
+                <li>
+                  <a href="./servicePage/embassy-appointments.html"
+                    >Embassy Appointment Services</a
+                  >
+                </li>
+                <li>
+                  <a href="./servicePage/job-services.html"
+                    >Ticketing Services</a
+                  >
+                </li>
+                <li>
+                  <a href="./servicePage/tourism-services.html"
+                    >Tourism Services</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 item">
+              <h3>Pages</h3>
+              <ul>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6 item text">
+              <h3>A&A Visa Consultants</h3>
+              <p>
+                Specializing in immigration and visa services, A&A Visa
+                Consultants helps individuals and families worldwide achieve
+                their aspirations of working or settling abroad. Our dedicated
+                team ensures seamless guidance and tailored support at every
+                stage.
+              </p>
+            </div>
+            <div class="col item social">
+              <a
+                href="https://wa.me/+923291800786?text=Hello%20Ashir,%20I%20would%20like%20to%20schedule%20a%20consultation%20appointment."
+                target="_blank"
+                rel="noreferrer"
+                ><i class="icon ion-social-whatsapp"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61571135382100&mibextid=ZbWKwL"
+                target="_blank"
+                ><i class="icon ion-social-facebook"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/aavisaconsultants/profilecard/?igsh=MWswZ2FjdHdlbjBybQ=="
+                target="_blank"
+                ><i class="icon ion-social-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/aandavisaconsultants-consultants-860334344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                ><i class="icon ion-social-linkedin"></i
+              ></a>
+              <a
+                href="https://youtube.com/@visaconsultancy3?si=Cvw_FEy1Hfuid60W"
+                target="_blank"
+                ><i class="icon ion-social-youtube"></i
+              ></a>
+            </div>
+          </div>
+          <p class="copyright">Company Name © 2018</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
